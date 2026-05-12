@@ -1,0 +1,220 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AustraliaCities.Views.MainWindow"
+        Title="Города Австралии"
+        Width="980"
+        Height="680"
+        MinWidth="820"
+        MinHeight="560"
+        Background="#F3F7F6">
+  <Window.Styles>
+    <Style Selector="TextBlock">
+      <Setter Property="LetterSpacing" Value="0" />
+    </Style>
+
+    <Style Selector="ListBox">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style Selector="ListBoxItem">
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Margin" Value="0 0 0 12" />
+      <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+  </Window.Styles>
+
+  <Grid RowDefinitions="Auto,*">
+    <Border Background="#12313A" Padding="28 24">
+      <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+        <TextBlock Text="Австралия: 4 популярных города"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   Foreground="White" />
+        <TextBlock Grid.Row="1"
+                   Text="Краткий туристический гид по Сиднею, Мельбурну, Брисбену и Перту"
+                   FontSize="15"
+                   Foreground="#C6DADB"
+                   Margin="0 8 0 0" />
+        <Border Grid.Column="1"
+                Grid.RowSpan="2"
+                Background="#EBCB65"
+                CornerRadius="6"
+                Padding="16 10"
+                VerticalAlignment="Center">
+          <TextBlock Text="AUS"
+                     FontSize="18"
+                     FontWeight="Bold"
+                     Foreground="#12313A" />
+        </Border>
+      </Grid>
+    </Border>
+
+    <Grid Grid.Row="1"
+          ColumnDefinitions="320,*"
+          Margin="24"
+          ColumnSpacing="24">
+      <Grid RowDefinitions="Auto,*">
+        <TextBlock Text="Города"
+                   FontSize="20"
+                   FontWeight="SemiBold"
+                   Foreground="#1B2F33"
+                   Margin="0 0 0 14" />
+
+        <ListBox Grid.Row="1"
+                 ItemsSource="{Binding Cities}"
+                 SelectedItem="{Binding SelectedCity}">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <Border Background="White"
+                      CornerRadius="8"
+                      Padding="0"
+                      BoxShadow="0 8 24 0 #16000000">
+                <Grid ColumnDefinitions="8,*"
+                      MinHeight="102">
+                  <Border Background="{Binding AccentBrush}"
+                          CornerRadius="8 0 0 8" />
+                  <Border Grid.Column="1"
+                          Padding="18 14 18 16">
+                    <StackPanel Spacing="8">
+                      <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Text="{Binding Name}"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Foreground="#162E33" />
+                        <Border Grid.Column="1"
+                                Background="{Binding SoftBrush}"
+                                CornerRadius="6"
+                                Padding="8 4">
+                          <TextBlock Text="{Binding State}"
+                                     FontSize="12"
+                                     FontWeight="SemiBold"
+                                     Foreground="#315258" />
+                        </Border>
+                      </Grid>
+                      <TextBlock Text="{Binding Tagline}"
+                                 FontSize="14"
+                                 Foreground="#53686D"
+                                 TextWrapping="Wrap"
+                                 MaxLines="2" />
+                    </StackPanel>
+                  </Border>
+                </Grid>
+              </Border>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </Grid>
+
+      <Border Grid.Column="1"
+              Background="White"
+              CornerRadius="8"
+              Padding="32"
+              BoxShadow="0 12 30 0 #15000000">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,*">
+          <Grid ColumnDefinitions="*,Auto">
+            <StackPanel>
+              <TextBlock Text="{Binding SelectedCity.Name}"
+                         FontSize="44"
+                         FontWeight="Bold"
+                         Foreground="#102D33" />
+              <TextBlock Text="{Binding SelectedCity.State}"
+                         FontSize="17"
+                         Foreground="#5B6F74"
+                         Margin="0 4 0 0" />
+            </StackPanel>
+
+            <Border Grid.Column="1"
+                    Background="{Binding SelectedCity.SoftBrush}"
+                    CornerRadius="8"
+                    Padding="16 12"
+                    VerticalAlignment="Top">
+              <StackPanel>
+                <TextBlock Text="Сезон"
+                           FontSize="12"
+                           FontWeight="SemiBold"
+                           Foreground="#65777B" />
+                <TextBlock Text="{Binding SelectedCity.BestSeason}"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="#18343A"
+                           Margin="0 4 0 0" />
+              </StackPanel>
+            </Border>
+          </Grid>
+
+          <Border Grid.Row="1"
+                  Background="{Binding SelectedCity.AccentBrush}"
+                  CornerRadius="4"
+                  Height="4"
+                  Width="160"
+                  HorizontalAlignment="Left"
+                  Margin="0 22 0 0" />
+
+          <TextBlock Grid.Row="2"
+                     Text="{Binding SelectedCity.Tagline}"
+                     FontSize="22"
+                     FontWeight="SemiBold"
+                     Foreground="#213D42"
+                     TextWrapping="Wrap"
+                     Margin="0 24 0 0" />
+
+          <TextBlock Grid.Row="3"
+                     Text="{Binding SelectedCity.Description}"
+                     FontSize="16"
+                     LineHeight="24"
+                     Foreground="#465E63"
+                     TextWrapping="Wrap"
+                     Margin="0 16 0 0" />
+
+          <Grid Grid.Row="4"
+                ColumnDefinitions="*,*"
+                RowDefinitions="Auto,*"
+                ColumnSpacing="28"
+                Margin="0 30 0 0">
+            <StackPanel>
+              <TextBlock Text="Статус"
+                         FontSize="13"
+                         FontWeight="SemiBold"
+                         Foreground="#738186" />
+              <TextBlock Text="{Binding SelectedCity.Population}"
+                         FontSize="18"
+                         FontWeight="SemiBold"
+                         Foreground="#1A3338"
+                         TextWrapping="Wrap"
+                         Margin="0 8 0 0" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+              <TextBlock Text="Места"
+                         FontSize="13"
+                         FontWeight="SemiBold"
+                         Foreground="#738186" />
+              <ItemsControl ItemsSource="{Binding SelectedCity.Highlights}"
+                            Margin="0 8 0 0">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <Grid ColumnDefinitions="12,*"
+                          Margin="0 0 0 9">
+                      <Border Width="6"
+                              Height="6"
+                              CornerRadius="3"
+                              Background="#EBCB65"
+                              VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="1"
+                                 Text="{Binding}"
+                                 FontSize="16"
+                                 Foreground="#243E43"
+                                 TextWrapping="Wrap" />
+                    </Grid>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </StackPanel>
+          </Grid>
+        </Grid>
+      </Border>
+    </Grid>
+  </Grid>
+</Window>

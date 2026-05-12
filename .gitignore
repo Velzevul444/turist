@@ -1,0 +1,7 @@
+bin/
+obj/
+.dotnet_home/
+.home/
+.nuget/
+.vs/
+.DS_Store
