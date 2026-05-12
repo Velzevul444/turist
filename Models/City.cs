@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 
 namespace AustraliaCities.Models;
 
@@ -12,6 +15,8 @@ public sealed class City
         string description,
         string population,
         string bestSeason,
+        string history,
+        string coatOfArmsPath,
         string accentColor,
         string softColor,
         IReadOnlyList<string> highlights)
@@ -22,6 +27,9 @@ public sealed class City
         Description = description;
         Population = population;
         BestSeason = bestSeason;
+        History = history;
+        using var coatOfArmsStream = AssetLoader.Open(new Uri(coatOfArmsPath));
+        CoatOfArms = new Bitmap(coatOfArmsStream);
         AccentBrush = SolidColorBrush.Parse(accentColor);
         SoftBrush = SolidColorBrush.Parse(softColor);
         Highlights = highlights;
@@ -38,6 +46,10 @@ public sealed class City
     public string Population { get; }
 
     public string BestSeason { get; }
+
+    public string History { get; }
+
+    public Bitmap CoatOfArms { get; }
 
     public IBrush AccentBrush { get; }
 

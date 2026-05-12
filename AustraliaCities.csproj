@@ -15,4 +15,11 @@
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.12" />
     <PackageReference Include="Avalonia.Diagnostics" Version="11.3.12" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets/Coats/sydney-coat.png" />
+    <AvaloniaResource Include="Assets/Coats/melbourne-coat.png" />
+    <AvaloniaResource Include="Assets/Coats/brisbane-coat.jpeg" />
+    <AvaloniaResource Include="Assets/Coats/perth-coat.jpeg" />
+  </ItemGroup>
 </Project>
